@@ -1,0 +1,35 @@
+#body {
+    color: white;
+    background: url(../../../assets/images/back2.jpg) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+}
+
+#body label {
+    font-weight: bold;
+}
+
+.first-coloumn h1 {
+    font-size: 35px;
+}
+
+.first-coloumn {
+    font-size: 15px;
+    margin-top: 250px;
+    height: auto;
+}
+
+.second-coloumn label{
+    font-size: 15px;
+}
+
+
+.second-coloumn {
+    margin: 10 10 10 10;
+    -webkit-box-shadow: 14px 5px 42px 28px rgba(0,0,0,0.62);
+-moz-box-shadow: 14px 5px 42px 28px rgba(0,0,0,0.62);
+box-shadow: 14px 5px 42px 28px rgba(0,0,0,0.62);
+}

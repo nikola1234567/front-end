@@ -1,0 +1,243 @@
+<div class="card">
+    <div class="card-header">
+        Product Catalog
+    </div>
+
+    <div class="card-body">
+        <div class="row" style="margin-bottom: 15px;">
+            <div class="col-md-2 filter">Filter by:</div>
+            <div class="col-md-4 filter">
+                <input type="text"
+                [(ngModel)]='listFilter'>
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom: 15px;">
+            <div class="col-md-2 filter"><b>Advanced Filtering</b></div>
+            
+            <form [formGroup]="filterForm" class="row">
+                <div class="form-group col-md-14" style="margin-left: 5px; margin-right: 5px;">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                value="default"
+                                formControlName="order"
+                            > BACK TO DEFAULT ORDER<br>
+                        </label>
+                    </div>
+                    
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                value="priceAsc"
+                                formControlName="order"
+                            > from cheapest to most expensive<br>
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                value="priceDesc"
+                                formControlName="order"
+                            > from most expensive to cheapest<br>
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                value="dateDesc"
+                                formControlName="order"
+                            > from newest to oldest<br>
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                value="dateAsc"
+                                formControlName="order"
+                            > from oldest to newest
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                value="ratingDesc"
+                                formControlName="order"
+                            > from most rated to least rated<br>
+                        </label>
+                    </div>
+                </div>   
+
+                <div class="form-group col-md-14" style="margin-left: 5px; margin-right: 5px;">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                value="ratingAsc"
+                                formControlName="order"
+                            > from least rated to most rated<br>
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                value="male"
+                                formControlName="order"
+                            > only male products<br>
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                value="female"
+                                formControlName="order"
+                            > only female products<br>
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                value="tShirt"
+                                formControlName="order"
+                            > only t-shirts<br>
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                value="jacket"
+                                formControlName="order"
+                            > only jackets<br>
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="form-group col-md-14" style="margin-left: 5px; margin-right: 5px;">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                value="shoes"
+                                formControlName="order"
+                            >only shoes<br>
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                value="shirt"
+                                formControlName="order"
+                            > only shirts<br>
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                value="tux"
+                                formControlName="order"
+                            > only tuxs<br>
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                value="jeans"
+                                formControlName="order"
+                            > only jeans<br>
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                value="trousers"
+                                formControlName="order"
+                            > only trousers<br>
+                        </label>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="row" *ngIf="service.loggedIn()">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
+                <div class="header">
+                    <button class="btn kopce" [ngClass]="{'btn-outline-success': !hasActive, 'btn-outline-info': hasActive}" (click)="onClickShoppingCart()">
+                        <i class="fa fa-shopping-cart"></i>
+                        <i *ngIf="!hasActive" style="margin-left: 2px;" class="fa fa-plus"></i> {{ hasActive == false ? 'Create' : ''}} Shopping Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="filterProducts.length == 0" class="text-center bg-danger">
+            <i class="fa fa-exclamation-triangle"></i>
+            <b>Sorry but there is still no products in this catgory in our store.</b>
+        </div>
+
+        <div class="row" *ngIf="filterProducts.length!=0">
+            <div *ngFor="let product of filterProducts">
+                <div class="col-md-7">
+                    <div class="product-top">
+                        <img [src]="product.images[0].base64format" width="200px" height="250px">
+                        <div class="overlay" *ngIf="service.loggedIn()">
+                            <button type="button" class="btn btn-secondary" title="View Details" [routerLink]="['/product-detail', product.id]">
+                                <i class="fa fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+            
+                    <div class="product-bottom text-center">
+                        <p class="p3">{{product.productName}}</p>
+                        <p class="p5">{{product.price | currency: 'EUR' : 'symbol' : '1.2-2'}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

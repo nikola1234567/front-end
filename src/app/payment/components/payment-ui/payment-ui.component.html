@@ -1,0 +1,36 @@
+<form novalidate (ngSubmit)="createTokenAndOpenModal(template)" [formGroup]="stripeTest" #f="ngForm">
+    <label for="nameeId">Insert your name here</label>
+    <input type="text" id="nameeId" formControlName="name" placeholder="Enter your name here" class="form-control">
+    <ngx-stripe-card
+      [options]="cardOptions"
+      [elementsOptions]="elementsOptions"
+    ></ngx-stripe-card>
+    <div *ngIf="error" class="alert alert-danger">
+        {{error}}
+    </div>
+    <button type="submit" class="btn btn-outline-success" [disabled]="!f.valid">
+      BUY
+    </button>
+
+    <ng-template #template>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Continue with the transaction?</h4>
+        <button type="button" class="colse pull-right" aria-label="Close" (click)="modalRef.hide();cancelTransaction(template)">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><b>Transaction name:</b> {{userId}}</p>
+        <p><b>Description:</b> {{description}}</p>
+        <p><b>Total cost:</b> {{price}}</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success pull-left" (click)="confirmTransaction(template);modalRef.hide()">
+          Confirm
+        </button>
+        <button class="btn btn-danger pull-left" style="margin-left: 5px;" (click)="cancelTransaction(template);modalRef.hide()">
+          Cancel
+        </button>
+      </div>
+    </ng-template>
+</form>

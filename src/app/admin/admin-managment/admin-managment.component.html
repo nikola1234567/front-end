@@ -1,0 +1,70 @@
+<div class="wrapper">
+  <!-- Sidebar -->
+  <nav id="sidebar" [ngClass]="{active: isOn}" class="navbar-dark bg-dark">
+    <div class="sidebar-header">
+      <h3>Avilable Actions</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+      <li class="active">
+        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Product
+          Managment</a>
+        <ul class="collapse list-unstyled" id="homeSubmenu">
+          <li>
+            <a href="#" [routerLink]="['/admin-managment/products/add-edit/0']">Add Product</a>
+          </li>
+          <li>
+            <a href="#" [routerLink]="['/admin-managment/products']">View Products</a>
+          </li>
+          <li>
+            <a href="#">See Predictions</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">About</a>
+      </li>
+      <li>
+        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+        <ul class="collapse list-unstyled" id="pageSubmenu">
+          <li>
+            <a href="#">Page 1</a>
+          </li>
+          <li>
+            <a href="#">Page 2</a>
+          </li>
+          <li>
+            <a href="#">Page 3</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Portfolio</a>
+      </li>
+      <li>
+        <a href="#">Contact</a>
+      </li>
+    </ul>
+
+  </nav>
+  <!-- Page Content -->
+  <div id="content">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+
+        <button type="button" id="sidebarCollapse" class="btn btn-info" (click)="toggleClass()">
+          <i class="fa fa-align-left"></i>
+          <span>Sidebar</span>
+        </button>
+      </div>
+    </nav>
+
+
+    <div id="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+
+

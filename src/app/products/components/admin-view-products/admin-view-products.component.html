@@ -1,0 +1,85 @@
+<div class="card" style="width: 100%;">
+    <div class="card-header">
+        {{pageTitle}}
+    </div>
+    <div class="card-body">
+
+        <div class="row">
+            <div class="col-md-2 filter">Filter by:</div>
+            <div class="col-md-4 filter">
+                <input type="text"
+                [(ngModel)]='listFilter'>
+            </div>
+        </div>
+
+
+
+        <!-- tabela od produkti -->
+        <div class="table-responsive">
+            <table class="table" *ngIf="products && products.length">
+                <thead>
+                    <tr>
+                        <th>Main Image</th>
+                        <th>Product Name</th>
+                        <th>Product Code</th>
+                        <th>Available</th>
+                        <th>Price</th>
+                        <th>5 star rating</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of filterProducts" [ngClass]="{'table-danger': product.persistence}">
+                        <td>
+                            <img
+                                [title]='product.productName | uppercase'
+                                [src]='product.images[0].base64format'
+                                [style.width.px]='imageWidth'
+                                [style.margin.px]='imageMargin'
+                            >
+                        </td>
+                        <td>
+                            {{product.productName}}
+                        </td>
+                        <td>{{product.productCode}}</td>
+                        <td>{{product.releaseDate | dateFormat}}</td>
+                        <td>{{product.price | currency: 'EUR' : 'symbol' : '1.2-2'}}</td>
+                        <td><app-star [rating]='product.starRating'
+                                      (ratingClicked)='onRatingClicked($event)'
+                            ></app-star></td>
+                        <td>
+                            <button class="btn btn-info" style="margin-right: 5px;"
+                                    [routerLink]="['/product-detail', product.id]" title="View all product details"
+                            >
+
+                            <i class="fa fa-info-circle"></i>
+                            </button>
+                            
+                            <button class="btn btn-secondary btn-sn" style="margin-right: 5px;"
+                                    (click)="onEditClick(product.id)" title="Edit this product"
+                            >
+
+                            <i class="fa fa-edit"></i>
+                            </button>
+
+                            <button style="margin-right: 5px;" class="btn btn-secondary btn-sn" 
+                                    title="Remove from catalog" *ngIf="!product.persistence" (click)="onRemoveClick(product.id)">
+                                <i class="fa fa-remove"></i>
+                           </button>
+
+                           <button style="margin-right: 5px;" class="btn btn-success" 
+                                    title="Add back to catalog" *ngIf="product.persistence" (click)="onRestoreClick(product.id)">
+                                <i class="fa fa-reply"></i>
+                           </button>
+
+                           <button style="margin-right: 5px;" class="btn btn-danger" 
+                                    title="NOT RECOMMENDED!!!" (click)="onDeleteClick(product.id, product.productName)">
+                                <i class="fa fa-remove"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

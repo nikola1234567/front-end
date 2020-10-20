@@ -1,0 +1,9 @@
+.information {
+    margin-top: 20vh;
+}
+
+.image-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}

@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="col-md-8">
+        <div style="margin: auto">
+            <app-no-shopping-cart *ngIf="!hasActive"></app-no-shopping-cart>
+            <div class="card" style="width: 100%;" *ngIf="hasActive">
+                <div class="card-header">
+                    Shopping Cart Products
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover table-dark">
+                        <thead>
+                            <th>Product</th>
+                            <th>Product Name</th>
+                            <th>Product Price</th>
+                            <th>Product Quantity</th>
+                            <th>#</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cartItem of cartItems">
+                                <th>
+                                    <img src="{{cartItem.products.images[0].base64format}}" width="60px" height="65px">
+                                </th>
+                                <th>{{cartItem.products.productName}}</th>
+                                <th>{{cartItem.products.price | currency: 'USD' : 'symbol' : '1.2-2'}}</th>
+                                <th>
+                                    <input type="number" class="form-control" [value]="cartItem.quantity" width="10px" #copies (change)="addProduct(cartItem.products.id, copies.value)" max="cartItem.products.quantity">
+                                </th>
+                                <th>
+                                    <button class="btn btn-outline-danger" (click)="removeProduct(cartItem.products.id)" style="margin-right: 10px;">
+                                        <i class="fa fa-remove"></i>
+                                    </button>
+                                    <button class="btn btn-outline-info" style="margin-right: 5px;"
+                                         [routerLink]="['/product-detail', cartItem.products.id]" title="View all product details"
+                                    >
+                                        <i class="fa fa-info-circle"></i>
+                                    </button>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="header">
+            <button class="btn kopce" [ngClass]="{'btn-outline-success': !hasActive, 'btn-outline-info': hasActive}" (click)="onClickShoppingCart()">
+                <i class="fa fa-shopping-cart"></i>
+                <i *ngIf="!hasActive" style="margin-left: 2px;" class="fa fa-plus"></i> {{ hasActive == false ? 'Create' : ''}} Shopping Cart
+            </button>
+        </div>
+        <div class="header"  *ngIf="hasActive" >
+            <button class="btn btn-outline-danger kopce" (click)="cancelShoppingCart()">
+                <i class="fa fa-shopping-cart"></i> Cancel Shopping Cart
+            </button>
+        </div>
+
+        <div class="card" style="margin-top: 30px; margin-right: 10px;" *ngIf="hasActive">
+            <div class="card-body">
+                <h5 class="card-title">Summary Invoice</h5>
+                <p class="card-text">In total:  {{totalCost | currency: 'EUR' : 'symbol' : '1.2-2'}}</p>
+                <label for="nameId">Insert name for your transaction</label><span style="font-size: small;">( Recognizable for you )</span>
+                <input type="text" id="nameId" class="form-control" [(ngModel)]="name">
+                <label for="descriptionId">Insert short description for your transaction</label>
+                <input type="text" id="descriptionId" class="form-control" [(ngModel)]="description">
+            </div>
+            <div class="card-body">
+                <app-payment-ui
+                    (popup)="showPopUpBar($event)"
+                    userId="{{name}}"
+                    price="{{totalCost}}"
+                    description="{{description}}"
+                ></app-payment-ui>
+            </div>
+        </div>
+    </div>
+    <simple-notifications [options]="options"></simple-notifications>
+</div>

@@ -1,0 +1,354 @@
+<div class="card" width="100%">
+  <div class="card-header">
+    {{ id == 0 ? 'Add' : 'Edit'}} Product
+  </div>
+
+  <div class="card-body">
+    <form [formGroup]="addEditForm" (ngSubmit)="save()" #myForm>
+
+      <button
+      class="btn btn-primary"
+      type="submit"
+      title="Submit changes"
+      [disabled]="!addEditForm.dirty && selectedImage1 == null && selectedImage2 == null && selectedImage3 == null && imagesForRemoving.length == 0"
+      style="width: 80px;"
+    >
+      Submit
+    </button>
+
+      <!-- product name -->
+      <div class="form-group row mb-2">
+        <label
+          class="col-md-2  col-form-label"
+          for="productNameId"
+        >
+          Product Name
+        </label>
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="productNameId"
+            type="text"
+            placeholder="Product Name (required)"
+            formControlName="productName"
+            [ngClass]="{'is-invalid': productNamemessage}"
+          />
+          <span class="invalid-feedback">
+                        {{ productNamemessage }}
+                    </span>
+        </div>
+      </div>
+
+      <!-- product code -->
+      <div class="form-group row mb-2">
+        <label
+          class="col-md-2  col-form-label"
+          for="productCodeId"
+        >
+          Product Code
+        </label>
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="productCodeId"
+            type="text"
+            placeholder="Product Code (required)"
+            formControlName="productCode"
+            [ngClass]="{'is-invalid': productCodemessage}"
+          />
+          <span class="invalid-feedback">
+                        {{ productCodemessage }}
+                    </span>
+        </div>
+      </div>
+
+      <!-- rating -->
+      <div class="form-group row mb-2">
+        <label
+          class="col-md-2  col-form-label"
+          for="ratingId"
+        >
+          Product Rating
+        </label>
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="ratingId"
+            type="number"
+            placeholder="Product rating (required)"
+            formControlName="starRating"
+            [ngClass]="{'is-invalid': ratingmessage}"
+          />
+          <span class="invalid-feedback">
+                        {{ ratingmessage }}
+                    </span>
+        </div>
+      </div>
+
+      <!-- quantity -->
+      <div class="form-group row mb-2">
+        <label
+          class="col-md-2  col-form-label"
+          for="quantityId"
+        >
+          Quantity
+        </label>
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="quantityId"
+            type="number"
+            placeholder="Product quantity (required)"
+            formControlName="quantity"
+            [ngClass]="{'is-invalid': quantitymessage}"
+          />
+          <span class="invalid-feedback">
+                        {{ quantitymessage }}
+                    </span>
+        </div>
+      </div>
+
+      <!-- price -->
+      <div class="form-group row mb-2">
+        <label
+          class="col-md-2  col-form-label"
+          for="priceId"
+        >
+          Product Price
+        </label>
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="priceId"
+            type="number"
+            placeholder="Product price (required)"
+            formControlName="price"
+            [ngClass]="{'is-invalid': pricemessage}"
+          />
+          <span class="invalid-feedback">
+                        {{ pricemessage }}
+                    </span>
+        </div>
+      </div>
+
+      <!-- brand -->
+      <div class="form-group row mb-2">
+        <label
+          class="col-md-2  col-form-label"
+          for="brandId"
+        >
+          Product Brand
+        </label>
+        <div class="col-md-8">
+          <input
+            class="form-control"
+            id="brandId"
+            type="text"
+            placeholder="Product Brand (required)"
+            formControlName="brand"
+            [ngClass]="{'is-invalid': brandmessage}"
+          />
+          <span class="invalid-feedback">
+                        {{ brandmessage }}
+                    </span>
+        </div>
+      </div>
+
+      <!-- gender -->
+      <div class="form-group row mb-2">
+        <label
+          class="col-md-2  col-form-label"
+          for="genderId"
+        >
+          Gender selection
+        </label>
+        <div class="col-md-8">
+          <select class="custom-select" [ngClass]="{'is-invalid':gendermessage}" formControlName="gender">
+            <option value=" " disabled>Choose the approiate gender for the product</option>
+            <option value="MALE">Male</option>
+            <option value="FEMALE">Female</option>
+          </select>
+          <span class="invalid-feedback">
+                        {{ gendermessage }}
+                    </span>
+        </div>
+      </div>
+
+
+      <!-- type -->
+      <div class="form-group row mb-2">
+        <label
+          class="col-md-2  col-form-label"
+          for="typeId"
+        >
+          Type selection
+        </label>
+        <div class="col-md-8">
+          <select class="custom-select" [ngClass]="{'is-invalid':typemessage}" formControlName="type">
+            <option value=" " disabled>Choose the type of the product</option>
+            <option value="TSHIRT">T-Shirt</option>
+            <option value="JACKET">Jacket</option>
+            <option value="SHOES">Shoes</option>
+            <option value="SHIRT">Shirt</option>
+            <option value="TUX">Tux</option>
+            <option value="JEANS">Jeans</option>
+            <option value="TROUSERS">Trousers</option>
+          </select>
+          <span class="invalid-feedback">
+                        {{ gendermessage }}
+                    </span>
+        </div>
+      </div>
+
+
+      <!-- description -->
+      <div class="form-group row mb-2">
+        <label
+          class="col-md-2  col-form-label"
+          for="descriptionId"
+        >
+          Product Description
+        </label>
+        <div class="col-md-8">
+                    <textarea
+                      class="form-control"
+                      id="descriptionId"
+                      placeholder="Product Description (requierd)"
+                      formControlName="description"
+                      [ngClass]="{'is-invalid': descriptionmessage}"
+                    ></textarea>
+          <span class="invalid-feedback">
+                        {{ descriptionmessage }}
+                    </span>
+        </div>
+      </div>
+
+      <!-- image1 -->
+      <div class="form-group row mb-2">
+        <label
+          class="col-md-2  col-form-label"
+          for="imageId"
+        >
+          Product Image
+        </label>
+        <div class="col-md-8" [ngClass]="{'is-invalid': imagemessage}">
+          <input
+            class="form-control"
+            id="imageId"
+            type="file"
+            placeholder="Product Image (required)"
+            accept="image/*"
+            (change)="onFileChange1($event)"
+          />
+          <img [src]="imageUrl1" height="250px" width="170px" *ngIf="imageUrl1" class="img-thumbnail">
+          <span class="invalid-feedback">
+              {{ imagemessage }}
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <div class="col-md-8">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input"
+                     id="optionalImagesId"
+                     type="checkbox"
+                     [value]="optImage"
+                     (click)="toggleOptImage()">Optional Images
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- optional images -->
+      <div *ngIf="optImage">
+        <!-- image2 -->
+        <div class="form-group row mb-2">
+          <label
+            class="col-md-2  col-form-label"
+            for="image2Id"
+          >
+            Product Image 2
+          </label>
+          <div class="col-md-8">
+            <input
+              class="form-control"
+              id="image2Id"
+              type="file"
+              placeholder="Product Image2 (optional)"
+              accept="image/*"
+              (change)="onFileChange2($event)"
+            />
+            <img [src]="imageUrl2" height="250px" width="170px" *ngIf="imageUrl2" class="img-thumbnail">
+          </div>
+        </div>
+
+        <!-- image3 -->
+        <div class="form-group row mb-2">
+          <label
+            class="col-md-2  col-form-label"
+            for="image3Id"
+          >
+            Product Image 3
+          </label>
+          <div class="col-md-8">
+            <input
+              class="form-control"
+              id="image3Id"
+              type="file"
+              placeholder="Product Image3 (optional)"
+              accept="image/*"
+              (change)="onFileChange3($event)"
+            />
+            <img [src]="imageUrl3" height="250px" width="170px" *ngIf="imageUrl3" class="img-thumbnail">
+          </div>
+        </div>
+
+
+      </div>
+
+
+      <!-- [disabled]="!productEditForm.valid && !productEditForm.dirty" -->
+     
+
+
+
+      <div *ngIf="id!=0">
+        <fieldset class="scheduler-border">
+          <legend class="scheduler-border">Images of the product</legend>
+            <div class="row">
+              <div *ngFor="let image of product.images; index as i" class="col-lg-4 col-md-4 col-xs-4 thumb" style="margin-bottom: 5px;">
+                <div class="thumbnail">
+                  <img class="img-responsive" [src]="image.base64format" alt="" height="250px" width="170px">
+                  <a  *ngIf="!image.imageToggled" style="margin-left: 15px;" class="btn btn-danger"
+                   (click)="removeImage(i, 'remove')" title="Remove this image">
+                    <i class="fa fa-remove"></i>
+                  </a>
+                  <a *ngIf="image.imageToggled" style="margin-left: 15px;" class="btn btn-success"
+                    (click)="removeImage(i, 'restore')" title="Restore this image">
+                      <i class="fa fa-reply"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+        </fieldset>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="card-footer">
+    <button class="btn btn-outline-secondary"
+            [routerLink]="['/welcome']"
+    >
+        <i class="fa fa-chevron-left"></i> Home
+    </button>
+
+    <button class="btn btn-outline-secondary"
+            [routerLink]="['/admin-managment/products']"
+    >
+    Product List <i class="fa fa-chevron-right"></i> 
+    </button>
+</div>
+</div>

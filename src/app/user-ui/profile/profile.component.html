@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 image-div">
+            <img [src]="imagePath" style="border-radius: 50%;" width="500px" height="500px">
+        </div>
+        <div class="col-md-6 information">
+            <button class="btn btn-success" style="margin-bottom: 10px;" [routerLink]="['/user-ui/edit-profile']" *ngIf="authService.loggedInWithClassicLogin()">
+                <i class="fa fa-edit"></i> Change personal information
+            </button>
+            <p><b>Name: </b> {{ user.name }}</p>
+            <hr>
+            <p><b>Surname: </b> {{ user.surname }}</p>
+            <hr>
+            <p><b>Username: </b> {{ user.userName }}</p>
+            <hr>
+            <p><b>Email: </b> {{ user.email }}</p>
+            <hr>
+            <p><b>Create Date: </b> {{ user.createDate |  dateFormat }}</p>
+            <hr>
+        </div>
+    </div>
+</div>

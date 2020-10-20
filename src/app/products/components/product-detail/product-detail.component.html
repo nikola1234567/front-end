@@ -1,0 +1,90 @@
+<div class="card container product-body">
+    <div *ngIf="errorMessage">
+        {{errorMessage}}
+    </div>
+    <div class="card-header">
+        {{product.productName}}
+    </div>
+  
+    <div class="card-body">
+      <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div *ngFor="let urls of product.images; index as i" class="carousel-item" [ngClass]="{'active': i===0}">
+                            <img [src]="urls.base64format" class="d-block w-100" alt="..." width="78.4px" height="370px">
+                        </div>
+                    </div>
+                    <a *ngIf="product.images.length > 1" class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a *ngIf="product.images.length > 1" class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-7">
+              <span id="code" >Product code: {{product.productCode}}</span>
+              <p><b>Product Name:</b> {{product.productName}}</p>
+              <p><b>Rating:</b> <br> 
+                <app-star
+                  [rating]="product.starRating"
+                ></app-star>
+              </p>
+              <p><b>Product price:</b> {{product.price | currency: 'EUR' : 'symbol' : '1.2-2'}}</p>
+              <p><b>Availability:</b> {{product.quantity > 0.0 ? 'In stock' : 'Out of stock'}}</p>
+              <p><b>Condition:</b> {{product.condition}}</p>
+              <p><b>Brand:</b> {{product.brand}}</p>
+              <p><b>Details:</b> <br> {{product.description}}</p>
+              <p><b>Gender: </b> {{product.category.gender}}</p>
+              <p><b>Type: </b>{{ product.category.type}}</p>
+            </div>
+        </div>
+    </div>
+    </div>
+  
+    <div class="card-footer">
+        <button class="btn btn-outline-socondary"
+                title="Go back to product list"
+                style="width: 80px;"
+                [routerLink]="['/user-products-view']"
+        >
+            <i class="fa fa-chevron-left"></i>Back
+        </button>
+
+        <button
+          class="btn"
+          style="width: 80px;"
+          [title]="favourite == false ? 'Add to favourites' : 'Remove from favourites'"
+          (click)="toggleFavourite()"
+        >
+          <i *ngIf="!favourite" class="fa fa-heart-o"></i>
+          <i *ngIf="favourite" class="fa fa-heart"></i>
+        </button>
+
+        <button
+          class="btn"
+          style="width: 80px;"
+          [title]="givenFeedback == false ? 'Rate product' : 'Unrate product'"
+          (click)="toggleFeedback()"
+        >
+          <i *ngIf="!givenFeedback" class="fa fa-star-o"></i>
+          <i *ngIf="givenFeedback" class="fa fa-star"></i>
+        </button>
+
+        <button
+          class="btn"
+          style="width: 80px;"
+          [title]="inShoppingCart == false ? 'Add to Shopping Cart' : 'Remove From Shopping Cart'"
+          (click)="toggleProductShoppingCart()"
+          [disabled]="disabled"
+        >
+          <i *ngIf="inShoppingCart" class="fa fa-shopping-cart"></i>
+          <i *ngIf="!inShoppingCart" class="fa fa-cart-plus"></i>
+        </button>
+    </div>
+  </div>
+  

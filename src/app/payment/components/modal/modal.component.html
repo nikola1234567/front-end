@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h5 class="modal-title">¿Continue with this payment?</h5>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <h5>Payment amount</h5>
+    <p>{{totalCost}}</p>
+    <p><b>Description</b> {{description}}</p>
+</div>
+<div class="modal-footer d-flex justify-content-between">
+    <button type="button" class="btn btn-success" (click)="confirm(id)">Confirm</button>
+    <button type="button" class="btn btn-danger" (click)="cancel(id)">Cancel</button>
+</div>

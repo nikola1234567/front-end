@@ -1,0 +1,17 @@
+<ul class="nav nav-tabs navbar-dark bg-dark">
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/user-ui/profile']" routerLinkActive="active">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/user-ui/favourites']" routerLinkActive="active">Favourites</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/user-ui/shopping-cart']" routerLinkActive="active">Active Shopping Cart</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/user-ui/past-transactions']" routerLinkActive="active">Past Transactions</a>
+    </li>
+  </ul>
+<div>
+    <router-outlet></router-outlet>
+</div>

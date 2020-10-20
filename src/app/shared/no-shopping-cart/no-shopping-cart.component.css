@@ -1,0 +1,7 @@
+.alert {
+    background-color: rgba(239, 76, 76, 1);
+    color: white;
+    font-size: medium;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}

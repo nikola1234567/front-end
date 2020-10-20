@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="row bg">
+        <div class="col-md-4"></div>
+        <div class="col-md-4" class="form-container">
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <h3 class="text-center">Log In Form</h3>
+                <hr>
+                
+                <div class="form-group">
+                    <label for="usernameId">Username:</label>
+                    <input type="text" id="usernameId" class="form-control" placeholder="Enter your username here" formControlName="username" [ngClass]="{'is-invalid': usernamemessage}">
+                    <span class="invalid-feedback" style="font-weight: bold;">
+                        {{ usernamemessage }}
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <label for="passwordId">Password:</label>
+                    <input type="password" id="passwordId" class="form-control" placeholder="Enter your password here" formControlName="password" [ngClass]="{'is-invalid': passwordmessage}">
+                    <span class="invalid-feedback" style="font-weight: bold;">
+                        {{ passwordmessage }}
+                    </span>
+                </div>
+
+                <button type="submit" class="btn btn-outline-info btn-block">
+                    Log In
+                </button>
+
+                <hr style="color: white;">
+                    <p class="text-center" style="color: white;"><b>OR</b></p>
+                <hr style="color: white;">
+
+            </form>
+
+            
+                <button class="btn btn-outline-danger btn-block" (click)="signInWithGoogle()">
+                    <i class="fa fa-google"> Log In with Google Account</i>
+                </button>
+
+                
+                <button class="btn btn-outline-primary btn-block" (click)="signInWithFB()">
+                    <i class="fa fa-facebook"> Log In with Facebook Account</i>
+                </button>
+
+            <span class="info" style="font-weight: bolder;">
+                Don't have an account? Register <a [routerLink]="['/register']">here</a>.
+            </span>
+
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="row" *ngIf="filterProducts.length!=0">
+    <div *ngFor="let product of filterProducts">
+        <div class="col-md-7">
+            <div class="product-top">
+                <img [src]="product.images[0].base64format" width="200px" height="250px">
+                <div class="overlay" *ngIf="service.loggedIn()">
+                    <button type="button" class="btn btn-secondary" title="View Details" [routerLink]="['/product-detail', product.id]">
+                        <i class="fa fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+    
+            <div class="product-bottom text-center">
+                <p class="p3">{{product.productName}}</p>
+                <p class="p5">{{product.price | currency: 'EUR' : 'symbol' : '1.2-2'}}</p>
+            </div>
+        </div>
+    </div>
+</div>

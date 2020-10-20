@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <h1 class="header">Edit Profile</h1>
+    <p><b>Profile Picture</b></p>
+    <hr>
+    <div class="row">
+        <img [src]="imagePath" style="border-radius: 50%; margin: auto;" width="300px" height="300px">
+        <input class="form-control" type="file" accept="image/**" (change)="onFileChange($event)" width="200px">
+        <a class="btn btn-success" style="padding-top: 10px; margin: auto;" (click)="saveImage()"><i class="fa fa-save"></i> Save Picture</a>
+    </div>
+    <br>
+    <p><b>Name</b></p>
+    <hr>
+    <div class="row">
+        <div class="col=md-6">
+            <input type="text" class="form-control" [(ngModel)]="user.name" [value]=user.name>
+        </div>
+        <div class="col=md-6">
+            <a class="btn btn-success" style="margin-left: 10px;" (click)="save()"><i class="fa fa-save"></i> Save New Name</a>
+        </div>
+    </div>
+
+    <br>
+    <p><b>Surname</b></p>
+    <hr>
+    <div class="row">
+        <div class="col=md-6">
+            <input type="text" class="form-control" [(ngModel)]="user.surname" [value]=user.surname>
+        </div>
+        <div class="col=md-6">
+            <a class="btn btn-success" style="margin-left: 10px;" (click)="save()"><i class="fa fa-save"></i> Save New Surname</a>
+        </div>
+    </div>
+
+
+    <br>
+    <p><b>Email</b></p>
+    <hr>
+    <div class="row">
+        <div class="col=md-6">
+            <input type="text" class="form-control" [(ngModel)]="user.email" [value]=user.email>
+        </div>
+        <div class="col=md-6">
+            <a class="btn btn-success" style="margin-left: 10px;" (click)="save()"><i class="fa fa-save"></i> Save New Email</a>
+        </div>
+    </div>
+
+    <button class="btn btn-outline-secondary"
+    [routerLink]="['/user-ui/profile']"
+    >
+        <i class="fa fa-chevron-left"></i> Back
+    </button>
+
+
+</div>

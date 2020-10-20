@@ -1,0 +1,28 @@
+.bg{
+    color: white;
+    background: url(../../../assets/images/back2.jpg) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+}
+
+.bg label {
+    font-weight: bold;
+}
+
+hr {
+    border-top: 1px solid #d5d5d5;
+    width: 75%;
+    margin-top: .8rem;
+    margin-bottom: 1rem;
+}
+
+.form-container{
+    padding: 50px 60px;
+    margin-top: 10vh;
+    -webkit-box-shadow: 14px 5px 42px 28px rgba(0,0,0,0.62);
+-moz-box-shadow: 14px 5px 42px 28px rgba(0,0,0,0.62);
+box-shadow: 14px 5px 42px 28px rgba(0,0,0,0.62);
+}
